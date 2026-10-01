@@ -1,16 +1,98 @@
 [gd_scene format=3 uid="uid://cskntypo1reya"]
 
-[ext_resource type="Script" uid="uid://cg4oo2qqoce3r" path="res://node_2d.gd" id="1_us4fc"]
-[ext_resource type="Script" uid="uid://dkeac5pcef3qu" path="res://save_button.gd" id="3_0sknr"]
-[ext_resource type="Script" uid="uid://6njbmsg5fmn1" path="res://sprite_exporter.gd" id="3_us4fc"]
+[sub_resource type="GDScript" id="GDScript_7u4rd"]
+script/source = "extends Node2D
+
+@onready var _lines: Node2D = $Line2D
+
+# Following the Draw Tutorial
+# ------
+var _pressed: bool = false #not being pressed yet
+var _current_line: Line2D = null
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT: #WHEN THE LEFT MOUSE BUTTON IS PRESSED --> adds all these points in a line
+			_pressed = event.pressed
+			
+			if _pressed:
+				_current_line = Line2D.new()
+				_current_line.default_color = Color.BLUE
+				_current_line.width = 4
+				_lines.add_child(_current_line)
+				_current_line.add_point(event.position)
+				
+	elif event is InputEventMouseMotion and _pressed:
+		_current_line.add_point(event.position)
+# ------
+
+# Adding a button to save the game
+
+	
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="GDScript" id="GDScript_rnmmr"]
+script/source = "extends Node
+
+@export var sprite: Sprite2D
+@export var saveButton: Button
+
+# following https://www.youtube.com/watch?v=qOLA1qwUCio tutorial, then altering it to fit my needs better
+# -----
+func _ready() -> void:
+	#THIS TAKES THE SIGNAL FROM node_2d AND CONNECTS IT
+	# so we can use the button there to send a signal to here to save the drawing as a png
+	saveButton.drawing_done.connect(_on_drawing_done) 
+	pass # Replace with function body.
+
+func _on_drawing_done():
+	print(\"Test received it's done\")
+	save_drawing()
+
+func save_drawing(): 
+	#screenshot the viewport to use as a png
+	var image = get_viewport().get_texture().get_image()
+	
+	#and then take that png and put it into a handy little folder
+	var path := \"output/\"
+	_check_and_create_dir(path)
+	image.save_png(path + \"img.png\")
+
+func _check_and_create_dir(path: String) -> void:
+	var dir_path := path.get_base_dir()
+	if not DirAccess.dir_exists_absolute(dir_path):
+		DirAccess.make_dir_recursive_absolute(dir_path)
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="GDScript" id="GDScript_p7msb"]
+script/source = "extends Button
+
+signal drawing_done
+
+# Adding a button to save the game
+func _ready():
+	pressed.connect(_on_pressed)
+
+func _on_pressed():
+	print(\"TEST Done Pressed\")
+	drawing_done.emit()
+"
 
 [node name="Node2D" type="Node2D" unique_id=1605858643]
-script = ExtResource("1_us4fc")
+script = SubResource("GDScript_7u4rd")
 
 [node name="Line2D" type="Line2D" parent="." unique_id=528315415]
 
 [node name="SpriteExporter" type="Node" parent="." unique_id=1187502521 node_paths=PackedStringArray("saveButton")]
-script = ExtResource("3_us4fc")
+script = SubResource("GDScript_rnmmr")
 saveButton = NodePath("save_button")
 
 [node name="save_button" type="Button" parent="SpriteExporter" unique_id=1852048810]
@@ -19,4 +101,4 @@ offset_top = 516.0
 offset_right = 720.0
 offset_bottom = 610.0
 text = "DONE"
-script = ExtResource("3_0sknr")
+script = SubResource("GDScript_p7msb")

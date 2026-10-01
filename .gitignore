@@ -1,6 +1,5 @@
 # Godot 4+ specific ignores
 .godot/
-<<<<<<< HEAD
 .nomedia
 
 # Godot-specific ignores
@@ -16,6 +15,9 @@ export_credentials.cfg
 .mono/
 data_*/
 mono_crash.*.json
-=======
+
+# Android
 /android/
->>>>>>> 34c6bb4 (Creating and Implementing base drawing tool and screen capture)
+
+# Generated output
+/output/

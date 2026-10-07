@@ -8,6 +8,8 @@ signal drawing_done
 # ------
 var _pressed: bool = false #not being pressed yet
 var _current_line: Line2D = null
+# change colors through a color picker: 
+var current_Color: Color = Color.BLUE
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -16,7 +18,7 @@ func _input(event: InputEvent) -> void:
 			
 			if _pressed:
 				_current_line = Line2D.new()
-				_current_line.default_color = Color.BLUE
+				_current_line.default_color = current_Color #using a var instead of hard coding the blue into here
 				_current_line.width = 4
 				_lines.add_child(_current_line)
 				_current_line.add_point(event.position)
@@ -29,7 +31,9 @@ func done_drawing() -> void:
 	print("TEST DRAWING BOX: IT WORKS AND IT'S Done!")
 	drawing_done.emit()
 	
-# Adding a button to save the game
+# Picking a color --> using the colorpicking button
+func set_Color(color: Color) -> void:
+	current_Color = color
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

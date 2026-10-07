@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cskntypo1reya"]
 
-[ext_resource type="Script" uid="uid://chhhq4n3crhv6" path="res://scenes/drawing_box.gd" id="1_rnmmr"]
+[ext_resource type="Script" uid="uid://bpt4tysngq5ay" path="res://scenes/drawing_screen.gd" id="1_p7msb"]
+[ext_resource type="Script" uid="uid://chhhq4n3crhv6" path="res://scripts/drawing_box.gd" id="1_rnmmr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7u4rd"]
 bg_color = Color(0.99116415, 0.99116427, 0.99116415, 1)
@@ -22,6 +23,7 @@ func _ready() -> void:
 	#THIS TAKES THE SIGNAL FROM node_2d AND CONNECTS IT
 	# so we can use the button there to send a signal to here to save the drawing as a png
 	saveButton.drawing_done.connect(_on_drawing_done) 
+	
 	pass # Replace with function body.
 
 func _on_drawing_done():
@@ -68,6 +70,7 @@ func _on_pressed():
 "
 
 [node name="Node2D" type="Node2D" unique_id=1605858643]
+script = ExtResource("1_p7msb")
 
 [node name="drawingBox" type="Panel" parent="." unique_id=1591529685]
 clip_contents = true
@@ -93,3 +96,11 @@ offset_right = 720.0
 offset_bottom = 610.0
 text = "DONE"
 script = SubResource("GDScript_p7msb")
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="." unique_id=374930343]
+offset_left = 244.0
+offset_top = 121.0
+offset_right = 398.0
+offset_bottom = 193.0
+text = "Pick a color!"
+color = Color(0.8352941, 0.8352941, 0.8352941, 1)

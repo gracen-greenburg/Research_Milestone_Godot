@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cskntypo1reya"]
 
-[ext_resource type="Script" uid="uid://bpt4tysngq5ay" path="res://scenes/drawing_screen.gd" id="1_p7msb"]
+[ext_resource type="Script" uid="uid://bpt4tysngq5ay" path="res://scripts/drawing_screen.gd" id="1_p7msb"]
 [ext_resource type="Script" uid="uid://chhhq4n3crhv6" path="res://scripts/drawing_box.gd" id="1_rnmmr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7u4rd"]
@@ -104,3 +104,10 @@ offset_right = 398.0
 offset_bottom = 193.0
 text = "Pick a color!"
 color = Color(0.8352941, 0.8352941, 0.8352941, 1)
+
+[node name="WidthSlider" type="HSlider" parent="." unique_id=393526116]
+offset_left = 247.0
+offset_top = 206.0
+offset_right = 393.0
+offset_bottom = 261.0
+max_value = 20.0

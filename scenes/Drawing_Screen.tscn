@@ -1,44 +1,19 @@
 [gd_scene format=3 uid="uid://cskntypo1reya"]
 
-[sub_resource type="GDScript" id="GDScript_7u4rd"]
-script/source = "extends Node2D
+[ext_resource type="Script" uid="uid://chhhq4n3crhv6" path="res://scenes/drawing_box.gd" id="1_rnmmr"]
 
-@onready var _lines: Node2D = $Line2D
-
-# Following the Draw Tutorial
-# ------
-var _pressed: bool = false #not being pressed yet
-var _current_line: Line2D = null
-
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT: #WHEN THE LEFT MOUSE BUTTON IS PRESSED --> adds all these points in a line
-			_pressed = event.pressed
-			
-			if _pressed:
-				_current_line = Line2D.new()
-				_current_line.default_color = Color.BLUE
-				_current_line.width = 4
-				_lines.add_child(_current_line)
-				_current_line.add_point(event.position)
-				
-	elif event is InputEventMouseMotion and _pressed:
-		_current_line.add_point(event.position)
-# ------
-
-# Adding a button to save the game
-
-	
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7u4rd"]
+bg_color = Color(0.99116415, 0.99116427, 0.99116415, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="GDScript" id="GDScript_rnmmr"]
 script/source = "extends Node
 
-@export var sprite: Sprite2D
+@export var drawing_Box: Panel
 @export var saveButton: Button
 
 # following https://www.youtube.com/watch?v=qOLA1qwUCio tutorial, then altering it to fit my needs better
@@ -57,10 +32,16 @@ func save_drawing():
 	#screenshot the viewport to use as a png
 	var image = get_viewport().get_texture().get_image()
 	
+	# Clip it to fit just the panel
+	var box_Position = drawing_Box.global_position
+	var box_Size = drawing_Box.size
+	
+	var cropped_Image = image.get_region(Rect2(box_Position,box_Size))
+	
 	#and then take that png and put it into a handy little folder
 	var path := \"output/\"
 	_check_and_create_dir(path)
-	image.save_png(path + \"img.png\")
+	cropped_Image.save_png(path + \"img.png\")
 
 func _check_and_create_dir(path: String) -> void:
 	var dir_path := path.get_base_dir()
@@ -87,12 +68,22 @@ func _on_pressed():
 "
 
 [node name="Node2D" type="Node2D" unique_id=1605858643]
-script = SubResource("GDScript_7u4rd")
 
-[node name="Line2D" type="Line2D" parent="." unique_id=528315415]
+[node name="drawingBox" type="Panel" parent="." unique_id=1591529685]
+clip_contents = true
+offset_left = 418.0
+offset_top = 120.0
+offset_right = 781.0
+offset_bottom = 448.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7u4rd")
+script = ExtResource("1_rnmmr")
 
-[node name="SpriteExporter" type="Node" parent="." unique_id=1187502521 node_paths=PackedStringArray("saveButton")]
+[node name="Line2D" type="Line2D" parent="drawingBox" unique_id=528315415]
+position = Vector2(-418, -120)
+
+[node name="SpriteExporter" type="Node" parent="." unique_id=1187502521 node_paths=PackedStringArray("drawing_Box", "saveButton")]
 script = SubResource("GDScript_rnmmr")
+drawing_Box = NodePath("../drawingBox")
 saveButton = NodePath("save_button")
 
 [node name="save_button" type="Button" parent="SpriteExporter" unique_id=1852048810]

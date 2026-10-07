@@ -12,15 +12,10 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func _on_drawing_done():
-	#print("Test received it's done")
-	#save_drawing()
-	print("========== ON DRAWING DONE ==========")
-	print("ABOUT TO CALL SAVE DRAWING")
+	print("Test received it's done")
 	save_drawing()
-	print("========== SAVE DRAWING RETURNED ==========")
 
 func save_drawing(): 
-	print("========== INSIDE SAVE DRAWING ==========")
 	#screenshot the viewport to use as a png
 	var image = get_viewport().get_texture().get_image()
 	
@@ -28,17 +23,12 @@ func save_drawing():
 	var box_Position = drawing_Box.global_position
 	var box_Size = drawing_Box.size
 	
-	print("FULL IMAGE SIZE: ", image.get_size())
-	print("BOX POSITION: ", box_Position)
-	print("BOX SIZE: ", box_Size)
-	
 	var cropped_Image = image.get_region(Rect2(box_Position,box_Size))
 	
 	#and then take that png and put it into a handy little folder
 	var path := "output/"
 	_check_and_create_dir(path)
 	cropped_Image.save_png(path + "img.png")
-	print("========== IMAGE SAVED ==========")
 
 func _check_and_create_dir(path: String) -> void:
 	var dir_path := path.get_base_dir()

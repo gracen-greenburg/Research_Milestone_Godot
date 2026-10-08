@@ -14,7 +14,7 @@ func updateTexture():
 	var image = Image.load_from_file("user://output/img.png")
 	
 	if image == null:
-		print("GIRL WHERE IS IT! --> missing the drawing")
+		print("GIRL WHERE IS IT! --> missing the new drawing")
 		return
 	
 	var update_texture = ImageTexture.create_from_image(image)

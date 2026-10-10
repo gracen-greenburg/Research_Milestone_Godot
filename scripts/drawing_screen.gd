@@ -3,10 +3,10 @@ extends Node2D
 ### CONNECTING THE DRAWING BOX TO THE COLOR PICKER 
 ## AND THE SLIDER
 @onready var drawing_box = $drawingBox
-@onready var color_picker = $ColorPickerButton
-@onready var size_Slider = $WidthSlider
+@onready var color_picker = $Buttons/ColorPickerButton
+@onready var size_Slider = $Buttons/WidthSlider
 @onready var drawing_box_BG: Panel = $drawingBox # let the user change the background of their sprite
-@onready var bg_picker_button: ColorPickerButton = $BGPickerButton
+@onready var bg_picker_button: ColorPickerButton = $Buttons/BGPickerButton
 
 func _ready() -> void:
 	color_picker.color_changed.connect(_on_color_changed)

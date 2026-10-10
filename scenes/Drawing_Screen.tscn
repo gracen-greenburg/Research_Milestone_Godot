@@ -107,6 +107,14 @@ offset_bottom = 309.0
 text = "Pick a color!"
 color = Color(0.8352941, 0.8352941, 0.8352941, 1)
 
+[node name="BGPickerButton" type="ColorPickerButton" parent="." unique_id=1888325302]
+offset_left = 249.0
+offset_top = 187.0
+offset_right = 402.0
+offset_bottom = 220.0
+text = "Pick a color!"
+color = Color(0.8352941, 0.8352941, 0.8352941, 1)
+
 [node name="WidthSlider" type="HSlider" parent="." unique_id=393526116]
 offset_left = 251.0
 offset_top = 349.0
@@ -121,6 +129,17 @@ offset_right = 368.0
 offset_bottom = 334.0
 theme_override_colors/font_color = Color(0.3019608, 0.11372549, 1, 1)
 text = "Pick a color!"
+
+[node name="BGColorLabel" type="Label" parent="." unique_id=1173873838]
+offset_left = 235.0
+offset_top = 221.0
+offset_right = 424.0
+offset_bottom = 270.0
+theme_override_colors/font_color = Color(0.3019608, 0.11372549, 1, 1)
+text = "Pick a background 
+color!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="SizeLabel" type="Label" parent="." unique_id=910810745]
 offset_left = 279.0

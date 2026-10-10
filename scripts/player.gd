@@ -25,8 +25,8 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
-
-
+	
+	
 func rotate_sprite() -> void: 
 	var targetRotation = sprite.rotation_degrees + 90.0 # rotate 90 degrees with each jump
 	

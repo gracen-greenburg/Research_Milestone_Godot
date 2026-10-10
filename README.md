@@ -10,3 +10,4 @@ The resources I used to learn the Godot environment:
 * https://www.youtube.com/watch?v=qOLA1qwUCio&vl=en 
 * https://docs.godotengine.org/en/stable/tutorials/scripting/singletons_autoload.html 
 * https://docs.godotengine.org/en/stable/getting_started/first_2d_game/03.coding_the_player.html
+* https://docs.godotengine.org/en/stable/classes/class_tween.html

@@ -35,3 +35,11 @@ func rotate_sprite() -> void:
 		.set_trans(Tween.TRANS_QUAD)\
 		.set_ease(Tween.EASE_OUT)
 	
+
+
+func _on_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_retry_button_pressed() -> void:
+	pass # Replace with function body.

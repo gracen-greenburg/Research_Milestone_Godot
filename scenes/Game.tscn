@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://cuhgelmjgi0fa" path="res://scenes/Killzone.tscn" id="4_78awf"]
 [ext_resource type="PackedScene" uid="uid://bobeu2j3jpgd6" path="res://scenes/Winzone.tscn" id="4_s0nni"]
 [ext_resource type="Script" uid="uid://cf4jx5e1ckbif" path="res://scripts/score_label.gd" id="6_aug50"]
+[ext_resource type="Script" uid="uid://diwlnbx6g3uue" path="res://scripts/retry_button.gd" id="7_kiw3p"]
+[ext_resource type="Script" uid="uid://bo4xt0o4q366o" path="res://scripts/main_menu_button.gd" id="8_400sg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cpr0p"]
 texture = ExtResource("1_qbsmt")
@@ -1702,4 +1704,32 @@ offset_right = 1195.0
 offset_bottom = 267.0
 text = "<-- the easy way out"
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=287887841]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1281022000]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RetryButton" type="Button" parent="CanvasLayer/Control" unique_id=2096659175]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 26.0
+offset_right = 141.0
+offset_bottom = 72.0
+text = "Retry"
+script = ExtResource("7_kiw3p")
+
+[node name="main_menu_button" type="Button" parent="CanvasLayer/Control" unique_id=1436994412]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 72.0
+offset_right = 139.0
+offset_bottom = 122.0
+text = "Main Menu"
+script = ExtResource("8_400sg")
+
 [connection signal="body_entered" from="Winzone" to="Player" method="_on_winzone_body_entered"]
+[connection signal="pressed" from="CanvasLayer/Control/RetryButton" to="CanvasLayer/Control/RetryButton" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/main_menu_button" to="CanvasLayer/Control/main_menu_button" method="_on_pressed"]

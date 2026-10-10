@@ -1,0 +1,13 @@
+extends Area2D
+
+## following tutorial
+@onready var timer: Timer = $Timer
+
+func _on_body_entered(body):
+	print("YOU DIED")
+	timer.start() 
+
+
+# when you die, restart scene
+func _on_timer_timeout():
+	get_tree().reload_current_scene()

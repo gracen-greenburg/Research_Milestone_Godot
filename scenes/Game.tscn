@@ -1601,6 +1601,8 @@ position = Vector2(545.18317, 154.15128)
 scale = Vector2(0.9319371, 1.077981)
 zoom = Vector2(1.5, 1.5)
 limit_left = 0
+limit_top = 17
+limit_right = 2114
 limit_bottom = 650
 
 [node name="Killzone" parent="." unique_id=335422354 instance=ExtResource("4_78awf")]
@@ -1647,3 +1649,26 @@ position = Vector2(1453, 230)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Platforms/Platform5" unique_id=714942470]
 libraries/ = SubResource("AnimationLibrary_3xj3m")
 autoplay = &"move"
+
+[node name="Text" type="Node" parent="." unique_id=739709419]
+
+[node name="Label" type="Label" parent="Text" unique_id=1230729905]
+offset_left = 2.0
+offset_top = 332.0
+offset_right = 158.0
+offset_bottom = 355.0
+text = "Press Space to Jump"
+
+[node name="Label2" type="Label" parent="Text" unique_id=306741761]
+offset_left = 291.0
+offset_top = 377.0
+offset_right = 375.0
+offset_bottom = 400.0
+text = "Don't fall..."
+
+[node name="Label3" type="Label" parent="Text" unique_id=712294516]
+offset_left = 1482.0
+offset_top = 362.0
+offset_right = 1698.0
+offset_bottom = 385.0
+text = "Wait for the right moment..."
